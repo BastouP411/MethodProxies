@@ -202,7 +202,7 @@ MpMethodProxyTest >> testCannotWrapCriticalProxyMethods3 [
 MpMethodProxyTest >> testCannotWrapCriticalProxyMethods4 [
 
 	| mp handler |
-	mp := MpMethodProxy onMethod: BlockClosure >> #methodProxyEnsure: handler: (handler := MpCountingHandler new).
+	mp := MpMethodProxy onMethod: BlockClosure >> #insEnsure: handler: (handler := MpCountingHandler new).
 	
 	self assertCannotInstall: mp
 ]

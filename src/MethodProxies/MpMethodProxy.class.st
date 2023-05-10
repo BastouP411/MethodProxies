@@ -35,7 +35,7 @@ Class {
 		'proxifiedMethod'
 	],
 	#pools : [
-		'MpMethodProxyPool'
+		'AnObsoleteMpMethodProxyPool'
 	],
 	#category : #MethodProxies
 }
@@ -239,7 +239,7 @@ MpMethodProxy >> shouldWrap: aMethod [
 	and: (#(isActive: isMeta level shiftLevelDown shiftLevelUp executeInLevel ) includes: (aMethod selector))) 
 	ifTrue: [ ^false ].
 	
-	^ aMethod pragmas noneSatisfy: [ :pragma | pragma selector = #methodProxyCannotWrap ]
+	^ aMethod pragmas noneSatisfy: [ :pragma | (pragma selector = #methodProxyCannotWrap) or: (pragma selector = #notInstrumentable) ]
 ]
 
 { #category : #installation }
@@ -281,8 +281,8 @@ MpMethodProxy >> valueWithReceiver: receiver arguments: arguments [
 	result := self
 		          receiver: receiver
 		          withArgs: arguments
-		          executeMethod: proxifiedMethod ] methodProxyEnsure:
-		(MpMethodProxyActivator
+		          executeMethod: proxifiedMethod ] insEnsure:
+		(MpInstrumentationUnwinder
 			 newWithHandler: handler
 			 receiver: receiver
 			 arguments: arguments).

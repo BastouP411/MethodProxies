@@ -1,19 +1,19 @@
 Class {
-	#name : #MpMethodProxyActivator,
-	#superclass : #MpMethodProxyEnsurer,
+	#name : #MpInstrumentationUnwinder,
+	#superclass : #InstrumentationEnsurer,
 	#instVars : [
 		'receiver',
 		'arguments',
 		'handler'
 	],
 	#pools : [
-		'MpMethodProxyPool'
+		'AnObsoleteMpMethodProxyPool'
 	],
 	#category : #MethodProxies
 }
 
 { #category : #'instance creation' }
-MpMethodProxyActivator class >> newWithHandler: aHandler receiver: receiver arguments: arguments [
+MpInstrumentationUnwinder class >> newWithHandler: aHandler receiver: receiver arguments: arguments [
 
 	^ self new
 		  handler: aHandler;
@@ -23,43 +23,43 @@ MpMethodProxyActivator class >> newWithHandler: aHandler receiver: receiver argu
 ]
 
 { #category : #accessing }
-MpMethodProxyActivator >> arguments [
+MpInstrumentationUnwinder >> arguments [
 
 	^ arguments
 ]
 
 { #category : #accessing }
-MpMethodProxyActivator >> arguments: anObject [
+MpInstrumentationUnwinder >> arguments: anObject [
 
 	arguments := anObject
 ]
 
 { #category : #accessing }
-MpMethodProxyActivator >> handler [
+MpInstrumentationUnwinder >> handler [
 
 	^ handler
 ]
 
 { #category : #accessing }
-MpMethodProxyActivator >> handler: anObject [
+MpInstrumentationUnwinder >> handler: anObject [
 
 	handler := anObject
 ]
 
 { #category : #accessing }
-MpMethodProxyActivator >> receiver [
+MpInstrumentationUnwinder >> receiver [
 
 	^ receiver
 ]
 
 { #category : #accessing }
-MpMethodProxyActivator >> receiver: anObject [
+MpInstrumentationUnwinder >> receiver: anObject [
 
 	receiver := anObject
 ]
 
 { #category : #evaluating }
-MpMethodProxyActivator >> value [
+MpInstrumentationUnwinder >> value [
 
 	<methodProxyCannotWrap>
 	thisProcess executeInLevel: [
