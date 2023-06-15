@@ -74,14 +74,9 @@ MpMethodProxy >> disable [
 	isDisabled := true
 ]
 
-{ #category : #accessing }
+{ #category : #'reflective operations' }
 MpMethodProxy >> doesNotUnderstand: aMessage [
-	^ proxifiedMethod 
-			ifNotNil: [ proxifiedMethod 
-								perform: aMessage selector 
-								withArguments: aMessage arguments ]
-			ifNil: [ super doesNotUnderstand: aMessage ]
-			
+	^aMessage sendTo: (proxifiedMethod unproxifiedMethod ) 
 ]
 
 { #category : #accessing }
